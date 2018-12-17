@@ -6,7 +6,12 @@
 <script>
     if (window.opener) {
         console.log(opener);
-        opener.location = 'javascript:alert(document.cookie);';
+
+        opener.window.addEventListener('popstate', function () {
+            alert(document.cookie);
+        });
+
+        opener.location = 'https://avolver.ru/test.html#test';
     } else {
         document.querySelector('h1').innerHTML = 'The previous tab is safe and intact. <code>window.opener</code> was <code>null</code>; mischief <em>not</em> managed!';
     }
